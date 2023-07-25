@@ -253,7 +253,8 @@ class App(object):
             raise ValueError(f"unexpected result duration: {expected_result_duration:.2f} != {result_duration:.2f}")
 
         ensure_folder_exists(output_path("results"))
-        result_filename = output_path(os.path.join("results", f"{valid_filename(self.get_title())}.mp4"))
+        filename = valid_filename(self.get_title())
+        result_filename = output_path(os.path.join("results", f"{filename}.mp4" if not filename.endswith(".mp4") else filename))
         os.rename(f'{output_path(key)}.mp4', result_filename)
 
     def get_title(self):
